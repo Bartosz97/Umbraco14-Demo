@@ -1,0 +1,32 @@
+<div>
+    <h4>Umbraco MVPs 😎</h4>
+    Language:
+    <select class="form-select-sm m-1" (change)="onLanguageChange($event)">
+        <option value="en-us" selected>🇺🇸</option>
+        <option value="pl-pl">🇵🇱</option>
+    </select>
+    Sorting:
+    <select class="form-select-sm m-1" (change)="onSortingChange($event)">
+        <option value="desc">Name ↑</option>
+        <option value="asc" selected>Name ↓</option>
+    </select>
+    Department:
+    <select class="form-select-sm m-1" (change)="onDepartmentChange($event)">
+        <option value="all">-- All --</option>
+        <option *ngFor="let department of departments"
+                [value]="department"
+                [attr.selected]="department===selectedDepartment ? true : null">
+            {{department}}
+        </option>
+    </select>
+</div>
+<div class="list-group list-group-horizontal flex-wrap">
+    <div class="card list-group-item m-1" style="width: 18rem;" *ngFor="let person of filteredPeople">
+        <img class="card-img-top" src="{{person.photoUrl}}" alt="Photo">
+        <div class="card-body">
+            <h5 class="card-title">{{person.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{person.departmentsLabel}}</h6>
+            <a href="#" class="btn btn-primary">Details</a>
+        </div>
+    </div>
+</div>
